@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import sys
 from tqdm import tqdm
+from xml.etree.ElementTree import Element, SubElement, tostring, ElementTree
 
 # Define your OpenWeatherMap API key
 API_KEY = "" # Get your API key from https://home.openweathermap.org/users/sign_up
