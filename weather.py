@@ -18,7 +18,7 @@ if not API_KEY:
 cities_data = []
 
 # Read city names from CSV file
-city_df = pd.read_csv('in_cities.csv')
+city_df = pd.read_csv('in_cities.csv') # CSV file containing city names
 
 # Function to fetch city data
 def fetch_city_data(city_name):
@@ -44,7 +44,6 @@ for city in tqdm(city_df['City'], desc="City Data", bar_format="{l_bar}{bar:10}{
 
 # Print the collected city data
 print(cities_data)
-print()
 
 # Function to fetch forecast data for a city
 def fetch_forecast_data(city):
@@ -123,3 +122,4 @@ elif output_format == "html":
 else:
     print("Invalid format. Please choose either 'csv', 'json', 'xml', or 'html'.")
     sys.exit(1)
+
