@@ -7,3 +7,6 @@ ENV/
 env.bak/
 venv.bak/
 myenv/
+
+# Output files
+*.csv
