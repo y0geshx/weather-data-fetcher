@@ -9,6 +9,7 @@ pytz==2024.1
 requests==2.32.3
 setuptools==71.1.0
 six==1.16.0
+tqdm==4.66.4
 tzdata==2024.1
 urllib3==2.2.2
 zope.interface==6.4.post2
