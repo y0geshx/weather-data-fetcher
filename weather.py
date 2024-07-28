@@ -6,7 +6,7 @@ import sys
 from tqdm import tqdm
 
 # Define your OpenWeatherMap API key
-API_KEY = "499ce11cf4ae629050bb01395158a49b"
+API_KEY = "" # Get your API key from https://home.openweathermap.org/users/sign_up
 
 # Check if API key is provided
 if not API_KEY:
