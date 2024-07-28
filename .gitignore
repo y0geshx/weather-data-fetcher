@@ -9,4 +9,4 @@ venv.bak/
 myenv/
 
 # Output files
-*.csv
+Realtime_WeatherDate.csv
