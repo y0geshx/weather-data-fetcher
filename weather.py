@@ -2,9 +2,15 @@ import requests
 from datetime import datetime, timezone
 import pandas as pd
 import numpy as np
+import sys
 
 # Define your OpenWeatherMap API key
-API_KEY = "YOUR_API_KEY"
+API_KEY = ""
+
+# Check if API key is provided
+if not API_KEY:
+    print("API key is not found. Please provide a valid API key.")
+    sys.exit(1)
 
 # Initialize a list to store city data
 cities_data = []
