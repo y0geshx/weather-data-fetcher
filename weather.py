@@ -3,9 +3,10 @@ from datetime import datetime, timezone
 import pandas as pd
 import numpy as np
 import sys
+from tqdm import tqdm
 
 # Define your OpenWeatherMap API key
-API_KEY = ""
+API_KEY = "499ce11cf4ae629050bb01395158a49b"
 
 # Check if API key is provided
 if not API_KEY:
@@ -34,7 +35,8 @@ def fetch_city_data(city_name):
         return None
 
 # Iterate over each city in the DataFrame and fetch data
-for city in city_df['City']:
+print("Fetching city data...")
+for city in tqdm(city_df['City'], desc="City Data", bar_format="{l_bar}{bar:10}{r_bar}{bar:-10b}", ncols=100):
     city_info = fetch_city_data(city)
     if city_info:
         cities_data.append(city_info)
@@ -77,7 +79,8 @@ def fetch_forecast_data(city):
 
 # Collect forecasts for all cities
 all_forecasts = []
-for city in cities_data:
+print("Fetching forecast data...")
+for city in tqdm(cities_data, desc="Forecast Data", bar_format="{l_bar}{bar:10}{r_bar}{bar:-10b}", ncols=100):
     city_forecasts = fetch_forecast_data(city)
     all_forecasts.extend(city_forecasts)
 
@@ -87,6 +90,35 @@ df = pd.DataFrame(all_forecasts)
 # Display the first 10 rows of the DataFrame
 print(df.head(10))
 
-# Save the DataFrame to a CSV file
-df.to_csv('Realtime_WeatherDate.csv', index=False)
-print('The DataFrame are successfully saved to a CSV file')
+# Ask the user for the preferred output format
+output_format = input("Enter the preferred output format (csv/json/xml/html): ").strip().lower()
+
+# Save the DataFrame based on the user's choice
+if output_format == "csv":
+    df.to_csv('Realtime_WeatherDate.csv', index=False)
+    print('The DataFrame has been successfully saved to a CSV file')
+elif output_format == "json":
+    df.to_json('Realtime_WeatherDate.json', orient='records', lines=True)
+    print('The DataFrame has been successfully saved to a JSON file')
+elif output_format == "xml":
+    # Define a function to convert DataFrame to XML using etree
+    def df_to_xml(df, filename=None):
+        root = Element('root')
+        for _, row in df.iterrows():
+            item = SubElement(root, 'item')
+            for field in df.columns:
+                field_element = SubElement(item, field)
+                field_element.text = str(row[field])
+        tree = ElementTree(root)
+        if filename:
+            tree.write(filename)
+        return tree
+
+    df_to_xml(df, 'Realtime_WeatherDate.xml')
+    print('The DataFrame has been successfully saved to an XML file')
+elif output_format == "html":
+    df.to_html('Realtime_WeatherDate.html', index=False)
+    print('The DataFrame has been successfully saved to an HTML file')
+else:
+    print("Invalid format. Please choose either 'csv', 'json', 'xml', or 'html'.")
+    sys.exit(1)
