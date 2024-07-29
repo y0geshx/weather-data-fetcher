@@ -99,3 +99,10 @@ Here is an example of how to use the script:
     data.to_html('weather_data.html')
     data.to_xml('weather_data.xml')
     ```
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
