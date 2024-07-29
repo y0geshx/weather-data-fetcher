@@ -6,6 +6,8 @@
 
 This project fetches weather data for a list of cities using the OpenWeatherMap API. It retrieves both current city data and forecast data.
 
+![GitHub License](https://img.shields.io/github/license/y0geshx/weather-data-fetcher?logo=github)
+
 ## Features
 
 - Fetches current weather data for a list of cities.
