@@ -95,10 +95,10 @@ output_format = input("Enter the preferred output format (csv/json/xml/html): ")
 
 # Save the DataFrame based on the user's choice
 if output_format == "csv":
-    df.to_csv('Realtime_WeatherDate.csv', index=False)
+    df.to_csv('weather_data.csv', index=False)
     print('The DataFrame has been successfully saved to a CSV file')
 elif output_format == "json":
-    df.to_json('Realtime_WeatherDate.json', orient='records', lines=True)
+    df.to_json('weather_data.json', orient='records', lines=True)
     print('The DataFrame has been successfully saved to a JSON file')
 elif output_format == "xml":
     # Define a function to convert DataFrame to XML using etree
@@ -114,10 +114,10 @@ elif output_format == "xml":
             tree.write(filename)
         return tree
 
-    df_to_xml(df, 'Realtime_WeatherDate.xml')
+    df_to_xml(df, 'weather_data.xml')
     print('The DataFrame has been successfully saved to an XML file')
 elif output_format == "html":
-    df.to_html('Realtime_WeatherDate.html', index=False)
+    df.to_html('weather_data.html', index=False)
     print('The DataFrame has been successfully saved to an HTML file')
 else:
     print("Invalid format. Please choose either 'csv', 'json', 'xml', or 'html'.")
